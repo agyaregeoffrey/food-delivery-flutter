@@ -1,7 +1,6 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
-import 'package:food_delivery_app/component/button.dart';
 import 'package:food_delivery_app/screens/login/login.dart';
 import 'package:food_delivery_app/screens/signup/sign_up.dart';
 import 'package:food_delivery_app/utils/constants.dart';
@@ -77,7 +76,7 @@ class _HomeState extends State<Home> {
             Text(
               'Login',
               style: TextStyle(
-                fontSize: 14.0,
+                fontSize: 13.0,
                 fontWeight: FontWeight.bold,
                 color: index == 0 ? primaryColor : colorGrey,
               ),
@@ -97,7 +96,7 @@ class _HomeState extends State<Home> {
             Text(
               'Sign Up',
               style: TextStyle(
-                fontSize: 14.0,
+                fontSize: 13.0,
                 fontWeight: FontWeight.bold,
                 color: index == 1 ? primaryColor : colorGrey,
               ),

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:food_delivery_app/screens/home/home.dart';
+import 'package:food_delivery_app/routes/routes.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
@@ -12,7 +12,8 @@ class MyApp extends StatelessWidget {
         fontFamily: 'Poppins',
         scaffoldBackgroundColor: Colors.white,
       ),
-      home: const Home(),
+      initialRoute: Routes.homePage,
+      onGenerateRoute: Routes.generateRoute,
     );
   }
 }

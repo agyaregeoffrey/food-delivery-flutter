@@ -8,13 +8,19 @@ const colorGrey = Color(0xFFB3B7C4);
 const lightGrey = Color(0xFFECECEC);
 
 const captionTextStyle = TextStyle(
-  fontSize: 15.0,
+  fontSize: 13.0,
+  color: primaryTextColor,
+  fontWeight: FontWeight.bold,
+);
+
+const bigTextStyle = TextStyle(
+  fontSize: 20.0,
   color: primaryTextColor,
   fontWeight: FontWeight.bold,
 );
 
 const descriptionTextStyle = TextStyle(
-  fontSize: 12.0,
+  fontSize: 11.0,
   color: Color(0xFFB3B7C4),
   fontWeight: FontWeight.bold,
 );
