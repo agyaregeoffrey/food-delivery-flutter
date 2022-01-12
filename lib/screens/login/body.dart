@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:food_delivery_app/component/account_title_text.dart';
 import 'package:food_delivery_app/component/button.dart';
 import 'package:food_delivery_app/routes/routes.dart';
 import 'package:food_delivery_app/utils/constants.dart';
+import 'package:food_delivery_app/utils/helpers.dart';
 
 class Body extends StatefulWidget {
   const Body({
@@ -13,26 +15,17 @@ class Body extends StatefulWidget {
 }
 
 class _BodyState extends State<Body> {
+  bool _remember = false;
   @override
   Widget build(BuildContext context) {
     return Form(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          const Padding(
-            padding: EdgeInsets.symmetric(horizontal: 32.0),
-            child: Align(
-              alignment: AlignmentDirectional.topStart,
-              child: Text(
-                'Your Email',
-                style: descriptionTextStyle,
-              ),
-            ),
-          ),
-          const SizedBox(height: 10.0),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 32.0),
-            child: Container(
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 16.0),
+        child: Column(
+          children: [
+            const AccountTitleText(text: 'Your Email'),
+            const SizedBox(height: 10.0),
+            Container(
               decoration: BoxDecoration(
                 color: lightGrey,
                 borderRadius: BorderRadius.circular(10.0),
@@ -47,22 +40,10 @@ class _BodyState extends State<Body> {
                 ),
               ),
             ),
-          ),
-          const SizedBox(height: 10.0),
-          const Padding(
-            padding: EdgeInsets.only(left: 32.0),
-            child: Align(
-              alignment: AlignmentDirectional.topStart,
-              child: Text(
-                'Password',
-                style: descriptionTextStyle,
-              ),
-            ),
-          ),
-          const SizedBox(height: 10.0),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 32.0),
-            child: Container(
+            const SizedBox(height: 10.0),
+            const AccountTitleText(text: 'Password'),
+            const SizedBox(height: 10.0),
+            Container(
               decoration: BoxDecoration(
                 color: lightGrey,
                 borderRadius: BorderRadius.circular(10.0),
@@ -77,20 +58,26 @@ class _BodyState extends State<Body> {
                 ),
               ),
             ),
-          ),
-          const SizedBox(height: 10.0),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20.0),
-            child: Row(
+            const SizedBox(height: 10.0),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Checkbox(value: true, onChanged: (value) {}),
+                Checkbox(
+                    value: _remember,
+                    onChanged: (value) {
+                      setState(() {
+                        _remember = value!;
+                      });
+                    }),
                 const Text(
                   'Remember Me',
                   style: descriptionTextStyle,
                 ),
                 const SizedBox(width: 40.0),
                 TextButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Helpers.showSnack(context, 'Change Password');
+                  },
                   child: const Text(
                     'Forgot Password?',
                     style: TextStyle(
@@ -102,16 +89,16 @@ class _BodyState extends State<Body> {
                 ),
               ],
             ),
-          ),
-          const SizedBox(height: 10.0),
-          Button(
-            text: 'Login',
-            pressed: () {
-              Navigator.of(context).pushNamed(Routes.landingPage);
-            },
-          ),
-          const SizedBox(height: 20.0),
-        ],
+            const SizedBox(height: 10.0),
+            Button(
+              text: 'Login',
+              pressed: () {
+                Navigator.of(context).pushNamed(Routes.landingPage);
+              },
+            ),
+            const SizedBox(height: 20.0),
+          ],
+        ),
       ),
     );
   }

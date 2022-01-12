@@ -20,7 +20,7 @@ const bigTextStyle = TextStyle(
 );
 
 const descriptionTextStyle = TextStyle(
-  fontSize: 11.0,
+  fontSize: 11.5,
   color: Color(0xFFB3B7C4),
   fontWeight: FontWeight.bold,
 );

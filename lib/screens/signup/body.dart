@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:food_delivery_app/component/account_title_text.dart';
 import 'package:food_delivery_app/component/button.dart';
 import 'package:food_delivery_app/routes/routes.dart';
 import 'package:food_delivery_app/utils/constants.dart';
@@ -47,23 +48,13 @@ class _BodyState extends State<Body> {
   Widget build(BuildContext context) {
     return Form(
       key: _formKey,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          const Padding(
-            padding: EdgeInsets.only(left: 32.0),
-            child: Align(
-              alignment: AlignmentDirectional.topStart,
-              child: Text(
-                'Your Email',
-                style: descriptionTextStyle,
-              ),
-            ),
-          ),
-          const SizedBox(height: 10.0),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 32.0),
-            child: Container(
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 16.0),
+        child: Column(
+          children: [
+            const AccountTitleText(text: 'Your Email'),
+            const SizedBox(height: 10.0),
+            Container(
               decoration: BoxDecoration(
                 color: lightGrey,
                 borderRadius: BorderRadius.circular(10.0),
@@ -87,22 +78,10 @@ class _BodyState extends State<Body> {
                 ),
               ),
             ),
-          ),
-          const SizedBox(height: 10.0),
-          const Padding(
-            padding: EdgeInsets.only(left: 32.0),
-            child: Align(
-              alignment: AlignmentDirectional.topStart,
-              child: Text(
-                'Password',
-                style: descriptionTextStyle,
-              ),
-            ),
-          ),
-          const SizedBox(height: 10.0),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 32.0),
-            child: Container(
+            const SizedBox(height: 10.0),
+            const AccountTitleText(text: 'Password'),
+            const SizedBox(height: 10.0),
+            Container(
               decoration: BoxDecoration(
                 color: lightGrey,
                 borderRadius: BorderRadius.circular(10.0),
@@ -124,22 +103,10 @@ class _BodyState extends State<Body> {
                 ),
               ),
             ),
-          ),
-          const SizedBox(height: 10.0),
-          const Padding(
-            padding: EdgeInsets.only(left: 32.0),
-            child: Align(
-              alignment: AlignmentDirectional.topStart,
-              child: Text(
-                'Confirm Password',
-                style: descriptionTextStyle,
-              ),
-            ),
-          ),
-          const SizedBox(height: 10.0),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 32.0),
-            child: Container(
+            const SizedBox(height: 10.0),
+            const AccountTitleText(text: 'Confirm Password'),
+            const SizedBox(height: 10.0),
+            Container(
               decoration: BoxDecoration(
                 color: lightGrey,
                 borderRadius: BorderRadius.circular(10.0),
@@ -161,18 +128,18 @@ class _BodyState extends State<Body> {
                 ),
               ),
             ),
-          ),
-          const SizedBox(height: 10.0),
-          const SizedBox(height: 10.0),
-          Button(
-              text: 'Sign Up',
-              pressed: () {
-                if (_formKey.currentState!.validate()) {
-                  _register();
-                }
-              }),
-          const SizedBox(height: 20.0),
-        ],
+            const SizedBox(height: 10.0),
+            const SizedBox(height: 10.0),
+            Button(
+                text: 'Sign Up',
+                pressed: () {
+                  if (_formKey.currentState!.validate()) {
+                    _register();
+                  }
+                }),
+            const SizedBox(height: 20.0),
+          ],
+        ),
       ),
     );
   }

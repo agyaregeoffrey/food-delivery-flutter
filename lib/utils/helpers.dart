@@ -5,6 +5,7 @@ class Helpers {
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         content: Text(message),
+        elevation: 2.0,
       ),
     );
   }

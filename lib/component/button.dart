@@ -19,7 +19,7 @@ class Button extends StatelessWidget {
       onPressed: pressed,
       child: Text(text),
       style: ElevatedButton.styleFrom(
-        minimumSize: Size(getProportionateScreenWidth(315), 50),
+        minimumSize: Size(getProportionateScreenWidth(350), 50),
         primary: primaryColor,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(10.0),
