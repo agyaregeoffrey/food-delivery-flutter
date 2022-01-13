@@ -24,3 +24,7 @@ const descriptionTextStyle = TextStyle(
   color: Color(0xFFB3B7C4),
   fontWeight: FontWeight.bold,
 );
+
+// Pref keys
+const emailKey = 'email';
+const passwordKey = 'password';

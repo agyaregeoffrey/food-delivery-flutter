@@ -40,6 +40,7 @@ dependencies:
   cloud_firestore: ^3.1.6
   firebase_analytics: ^9.0.5
   flutter_svg: ^1.0.0
+  shared_preferences: ^2.0.12
 
 dev_dependencies:
   flutter_test:
