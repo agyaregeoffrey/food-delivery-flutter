@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-// k means constant k
 const primaryColor = Color(0xFF276CC5);
 const primaryLightColor = Color(0xFFA0AEBC);
 const primaryTextColor = Color(0xFF000000);

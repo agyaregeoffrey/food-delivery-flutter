@@ -1,7 +1,8 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:food_delivery_app/component/account_title_text.dart';
 import 'package:food_delivery_app/component/button.dart';
-import 'package:food_delivery_app/models/user.dart';
+import 'package:food_delivery_app/models/person.dart';
 import 'package:food_delivery_app/offline/preferences_service.dart';
 import 'package:food_delivery_app/routes/routes.dart';
 import 'package:food_delivery_app/utils/constants.dart';
@@ -21,13 +22,16 @@ class _BodyState extends State<Body> {
   final _formKey = GlobalKey<FormState>(debugLabel: "_BodyState");
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
+  bool _remember = false;
 
   _getUserDetails() async {
-    final user = await _preferencesService.getEmailAndPassword();
-    setState(() {
-      _emailController.text = user.email;
-      _passwordController.text = user.password;
-    });
+    final person = await _preferencesService.getEmailAndPassword();
+    if (person != null) {
+      setState(() {
+        _emailController.text = person.email ?? '';
+        _passwordController.text = person.password ?? '';
+      });
+    }
   }
 
   @override
@@ -43,7 +47,35 @@ class _BodyState extends State<Body> {
     super.dispose();
   }
 
-  bool _remember = false;
+  void _signIn() async {
+    final auth = FirebaseAuth.instance;
+    final user = (await auth
+            .signInWithEmailAndPassword(
+              email: _emailController.text,
+              password: _passwordController.text,
+            )
+            .onError(
+              (error, stackTrace) => Helpers.showSnack(
+                  context, 'Login failed. Try again later $stackTrace'),
+            ))
+        .user;
+    if (user != null) {
+      Navigator.pushNamed(context, Routes.landingPage);
+    } else {
+      Helpers.showSnack(context, 'Login failed. Try again later');
+    }
+  }
+
+  void _rememberEmailAndPassword() {
+    if (_remember) {
+      final person = Person(
+        email: _emailController.text,
+        password: _passwordController.text,
+      );
+      _preferencesService.saveEmailAndPassword(person);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Form(
@@ -135,7 +167,10 @@ class _BodyState extends State<Body> {
               text: 'Login',
               pressed: () {
                 if (_formKey.currentState!.validate()) {
-                  _rememberEmailAndPassword();
+                  if (_remember) {
+                    _rememberEmailAndPassword();
+                  }
+                  _signIn();
                 }
               },
             ),
@@ -144,15 +179,5 @@ class _BodyState extends State<Body> {
         ),
       ),
     );
-  }
-
-  void _rememberEmailAndPassword() {
-    if (_remember) {
-      final user = User(
-        email: _emailController.text,
-        password: _passwordController.text,
-      );
-      _preferencesService.saveEmailAndPassword(user);
-    }
   }
 }

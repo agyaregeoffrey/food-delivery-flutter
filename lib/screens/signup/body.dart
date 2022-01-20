@@ -6,8 +6,6 @@ import 'package:food_delivery_app/routes/routes.dart';
 import 'package:food_delivery_app/utils/constants.dart';
 import 'package:food_delivery_app/utils/helpers.dart';
 
-final _auth = FirebaseAuth.instance;
-
 class Body extends StatefulWidget {
   const Body({
     Key? key,
@@ -32,6 +30,7 @@ class _BodyState extends State<Body> {
   }
 
   void _register() async {
+    final _auth = FirebaseAuth.instance;
     final user = (await _auth.createUserWithEmailAndPassword(
       email: _emailController.text,
       password: _passwordController.text,

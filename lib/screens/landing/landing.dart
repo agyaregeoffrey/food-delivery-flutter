@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:food_delivery_app/component/button.dart';
+import 'package:food_delivery_app/screens/landing/offer_card.dart';
 import 'package:food_delivery_app/utils/constants.dart';
 import 'package:food_delivery_app/utils/size_config.dart';
 
@@ -15,18 +14,25 @@ class _LandingState extends State<Landing> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16.0),
+      appBar: AppBar(
+        automaticallyImplyLeading: false,
+        title: const Center(
+          child: Text(
+            'Foodie',
+            style: bigTextStyle,
+          ),
+        ),
+        elevation: 0.0,
+        backgroundColor: Colors.white,
+      ),
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 16.0),
+        child: SingleChildScrollView(
+          physics: const BouncingScrollPhysics(),
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Padding(
-                padding: EdgeInsets.only(top: 10.0, bottom: 10.0),
-                child: Align(
-                  alignment: Alignment.center,
-                  child: Text('Foodie', style: bigTextStyle),
-                ),
-              ),
+              const SizedBox(height: 20.0),
               Container(
                 decoration: BoxDecoration(
                   color: lightGrey,
@@ -45,42 +51,18 @@ class _LandingState extends State<Landing> {
               SizedBox(
                 height: getProportionateScreenHeight(10.0),
               ),
+              const OfferCard(),
+              const SizedBox(height: 20.0),
+              Text(
+                'Food Categories',
+                style: bigTextStyle.copyWith(fontSize: 18.0),
+              ),
               Container(
+                width: getProportionateScreenWidth(150.0),
+                height: getProportionateScreenHeight(180.0),
                 decoration: BoxDecoration(
-                  color: primaryLightColor,
-                  borderRadius: BorderRadius.circular(10.0),
-                ),
-                child: Row(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.all(10.0),
-                      child: Column(
-                        children: [
-                          const Text(
-                            'First Order',
-                            style: bigTextStyle,
-                          ),
-                          const Text(
-                            '20% off',
-                            style: bigTextStyle,
-                          ),
-                          ElevatedButton(
-                            onPressed: () {},
-                            child: const Text('First20'),
-                            style: ElevatedButton.styleFrom(
-                                elevation: 0.0,
-                                primary: primaryColor,
-                                shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(10.0))),
-                          )
-                        ],
-                      ),
-                    ),
-                    SvgPicture.asset(
-                      'assets/images/delivery.svg',
-                      height: getProportionateScreenHeight(105.0),
-                    )
-                  ],
+                  color: primaryColor,
+                  borderRadius: BorderRadius.circular(16.0),
                 ),
               )
             ],
