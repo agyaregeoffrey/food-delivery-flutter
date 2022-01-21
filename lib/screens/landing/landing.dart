@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:food_delivery_app/models/data_manager.dart';
+import 'package:food_delivery_app/screens/landing/card_category.dart';
 import 'package:food_delivery_app/screens/landing/offer_card.dart';
 import 'package:food_delivery_app/utils/constants.dart';
 import 'package:food_delivery_app/utils/size_config.dart';
@@ -10,7 +12,10 @@ class Landing extends StatefulWidget {
   _LandingState createState() => _LandingState();
 }
 
+final dataManager = DataManager();
+
 class _LandingState extends State<Landing> {
+  final foodCategories = dataManager.foodCategories;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -52,18 +57,21 @@ class _LandingState extends State<Landing> {
                 height: getProportionateScreenHeight(10.0),
               ),
               const OfferCard(),
-              const SizedBox(height: 20.0),
+              const SizedBox(height: 16.0),
               Text(
                 'Food Categories',
                 style: bigTextStyle.copyWith(fontSize: 18.0),
               ),
-              Container(
-                width: getProportionateScreenWidth(150.0),
-                height: getProportionateScreenHeight(180.0),
-                decoration: BoxDecoration(
-                  color: primaryColor,
-                  borderRadius: BorderRadius.circular(16.0),
-                ),
+              const SizedBox(height: 16),
+              SizedBox(
+                height: getProportionateScreenHeight(150.0),
+                child: ListView.builder(
+                    scrollDirection: Axis.horizontal,
+                    physics: const BouncingScrollPhysics(),
+                    itemCount: foodCategories.length,
+                    itemBuilder: (context, index) => CardCategory(
+                          name: foodCategories[index].name,
+                        )),
               )
             ],
           ),
