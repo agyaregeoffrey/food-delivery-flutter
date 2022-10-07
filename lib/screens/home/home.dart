@@ -20,6 +20,7 @@ class _HomeState extends State<Home> {
   final PageController _controller = PageController(
     initialPage: 0,
   );
+
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
@@ -84,9 +85,15 @@ class _HomeState extends State<Home> {
             const SizedBox(height: 2.0),
             AnimatedContainer(
               duration: const Duration(milliseconds: 200),
-              height: 2.0,
+              height: 3.0,
               width: 40.0,
-              color: index == 0 ? primaryColor : Colors.white,
+              decoration: BoxDecoration(
+                borderRadius: const BorderRadius.only(
+                  topLeft: Radius.circular(8.0),
+                  topRight: Radius.circular(8.0),
+                ),
+                color: index == 0 ? primaryColor : Colors.white,
+              ),
             )
           ],
         ),
